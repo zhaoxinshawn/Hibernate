@@ -1,0 +1,30 @@
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+    <session-factory>
+        <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/hibernate</property>
+        <property name="hibernate.connection.username">root</property>
+        <property name="hibernate.connection.password">123456</property>
+        <!--显示sql语句-->
+        <property name="show_sql">true</property>
+        <!--格式化sql-->
+        <property name="format_sql">true</property>
+        <!--是否自动提交事务-->
+        <property name="hibernate.connection.autocommit">true</property>
+
+        <!--create:每次都会重新创建表
+            update:如果数据库没有表会创建一个
+            create-drop:如果sessionFactory关闭删表
+            validate:检验，如果和数据库字段不一致，抛异常
+        -->
+        <property name="hibernate.hbm2ddl.auto">update</property>
+
+        <property name="hibernate.current_session_context_class">thread</property>
+
+        <!--配置bean与表的映射文件-->
+        <mapping resource="model/User.hbm.xml"/>
+    </session-factory>
+</hibernate-configuration>

@@ -1,0 +1,29 @@
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="model.User" table="t_user">
+        <id name="uid" column="id">
+
+            <!--主键生成策略-->
+            <!-- generator:id的生成策略
+              increment:也会自动增长id,但是它的这种增长是自己Hibernate实现
+                         执行select max(id) 查询，这种会有线程并发问题
+              sequence:一般在oracle数据库才用
+              hilo:hibernate自己实现的id规则【不用,不用学】
+              native:【经常常用】
+                  如果是mysql数据库，id会自动增长
+                  如果是oracle数据库，会自动增长，sequence
+              uuid:【经常常用】一个长字符串,需要把模型的id改成字符串
+                     保存的时候，不用自己设置ID,hibernate会设置id
+              assigned:【经常常用】要手动设置id属性
+            -->
+
+            <generator class="native"></generator>
+        </id>
+        <!--名字不同<property name="bean中" column="数据库中的字段名"/>-->
+        <property name="name" /><!--type-->
+        <property name="password"/>
+    </class>
+</hibernate-mapping>
